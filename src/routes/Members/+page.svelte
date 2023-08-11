@@ -1,3 +1,10 @@
-<div class="container mx-auto text-center p-2 mt-8">
-	<h1 class="h1">Members</h1>
-</div>
+<script>
+	import { onMount } from 'svelte';
+	import supabase from '$lib/supaBaseConfig';
+	let members = [];
+	onMount(async () => {
+		let { data, error } = await supabase.from('Members').select();
+		members = data;
+		console.table(data);
+	});
+</script>
